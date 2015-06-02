@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/26 18:47:11 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/02 18:27:15 by lubaujar         ###   ########.fr       */
+/*   Created: 2015/06/02 23:23:55 by lubaujar          #+#    #+#             */
+/*   Updated: 2015/06/02 23:38:49 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh1.h"
 
-void	display_env(t_env *env)
+int		search_path_bin(char *cmd, char *s)
 {
-	t_env	*tmp;
-
-	tmp = env;
-	while (tmp)
-	{
-		ft_putstr(tmp->var);
-		write(1, "\n", 1);
-		tmp = tmp->next;
-	}
+	printf("cmd: %s\n", cmd);
+	printf("%s\n", s);
+	return (1);
 }
 
-void	get_and_display_pwd(void)
+int		exec_syscall(t_all *all, char *cmd)
 {
-	char	*pwd;
-	char	*buff;
-
-	buff = NULL;
-	pwd = getcwd(buff, 42);
-	ft_putstr(pwd);
-	write(1, "\n", 1);
+	if (search_path_bin(cmd, all->dup_env[0]) == 1)
+		return (1);
+	return (0);
 }

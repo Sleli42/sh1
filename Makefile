@@ -6,7 +6,7 @@
 #    By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/03 12:31:07 by lubaujar          #+#    #+#              #
-#    Updated: 2015/05/26 21:00:41 by lubaujar         ###   ########.fr        #
+#    Updated: 2015/06/02 23:36:23 by lubaujar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,12 @@ FLAGS = -g -Wall -Wextra -Werror
 LDFLAGS = -I./include/ -I./libft/include/
 
 SRC = main.c\
-		parse_cmd.c\
+		builtins.c\
 		lst.c\
 		env.c\
 		display.c\
-		misc.c
+		misc.c\
+		exec.c
 
 OBJ = $(SRC:.c=.o)
 	SRCDIR	= ./srcs/

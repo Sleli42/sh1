@@ -6,31 +6,31 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 16:19:31 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/05/26 21:00:30 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/02 23:38:51 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sh1.h>
-#include <stdio.h>
 
 int		main(int ac, char **av, char **env)
 {
-	char 	*buff;
-	t_env	*dup;
+	t_all	*all;
+	char	*buff;
 
+	all = (t_all *)malloc(sizeof(t_all));
+	all->dup_env = ft_dupenv(env);
+	all->data = NULL;
+	buff = NULL;
+	get_env(&all->data, env);
 	(void)ac;
 	(void)av;
-	(void)env;
-	buff = NULL;
-	dup = NULL;
-	get_env(&dup, env);
-	while (21)
+	while (1091111096051)
 	{
 		ft_putstr("PROMPT $> ");
 		while (get_next_line(0, &buff) >= 0)
 		{
-			ft_putstr("PROMPT $> ");
-			if (get_cmd(dup, buff) == 1)
+			if (builtins_cmd(all, buff) == 1
+				|| exec_syscall(all, buff) == 1)
 				break ;
 		}
 	}

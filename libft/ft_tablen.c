@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/26 18:47:11 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/02 18:27:15 by lubaujar         ###   ########.fr       */
+/*   Created: 2015/06/02 16:11:04 by lubaujar          #+#    #+#             */
+/*   Updated: 2015/06/02 16:59:30 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh1.h"
+#include "libft.h"
 
-void	display_env(t_env *env)
+size_t	ft_tablen(char **tab)
 {
-	t_env	*tmp;
+	size_t	ret;
+	int		i;
 
-	tmp = env;
-	while (tmp)
-	{
-		ft_putstr(tmp->var);
-		write(1, "\n", 1);
-		tmp = tmp->next;
-	}
-}
-
-void	get_and_display_pwd(void)
-{
-	char	*pwd;
-	char	*buff;
-
-	buff = NULL;
-	pwd = getcwd(buff, 42);
-	ft_putstr(pwd);
-	write(1, "\n", 1);
+	ret = 0;
+	i = 0;
+	while (tab[i++] != NULL)
+		ret++;
+	return (ret);
 }

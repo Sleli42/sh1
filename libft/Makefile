@@ -6,7 +6,7 @@
 #    By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/12 19:50:41 by lubaujar          #+#    #+#              #
-#    Updated: 2015/05/22 15:48:26 by lubaujar         ###   ########.fr        #
+#    Updated: 2015/06/02 16:13:39 by lubaujar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRC = ft_atoi.c\
 	  ft_uitoa.c\
 	  ft_rand_a_b.c\
 	  ft_intlen.c\
+	  ft_tablen.c\
 	  get_next_line.c
 
 OBJ = $(SRC:.c=.o)

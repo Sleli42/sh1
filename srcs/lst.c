@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:22:25 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/05/28 15:04:09 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/02 19:11:58 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ t_env		*lst_create_elem(char *s)
 	if (!(new = (t_env *)malloc(sizeof(t_env))))
 		return (NULL);
 	if (s == NULL)
-		new->line = NULL;
+		new->var = NULL;
 	else
 	{
-		new->line = ft_strdup(s);
-		if (new->line == NULL)
+		new->var = ft_strdup(s);
+		new->varname = dup_var_name(s);
+		if (new->var == NULL)
 			return (NULL);
 	}
 	new->next = NULL;
@@ -61,17 +62,28 @@ void		lst_add_elem_back(t_env **alst, t_env *new_elem)
 		return ;
 }
 
-void	lst_del_elem(t_env **alst, char *varname, size_t varnamelen)
+void	lst_del_elem(t_env **alst, char *varname)
 {
-	t_env	*tmp;
+	t_env	*next;
+	t_env 	*tmp;
+	int		i;
 
 	tmp = *alst;
+	next = NULL;
+	i = ft_strlen(varname);
 	while (tmp)
 	{
-		if (ft_strncmp(varname, var_name(tmp->line), varnamelen) == 0)
+		if (ft_strncmp(varname, tmp->varname, i) == 0)
 		{
-			printf("var to unsetenv\n");
-			printf("%s\n &&\n%s\n", varname, var_name(tmp->line));
+			next = tmp->next;
+			ft_strdel(&tmp->var);
+			ft_strdel(&tmp->varname);
+			free(tmp);
+			if (next != NULL)
+				(tmp->prev)->next = next;
+			else
+				(tmp->prev)->next = NULL;
+			return ;
 		}
 		tmp = tmp->next;
 	}

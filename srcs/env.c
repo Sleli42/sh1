@@ -6,11 +6,24 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:22:30 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/05/28 15:03:08 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/02 22:59:49 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh1.h"
+
+char	**ft_dupenv(char **env)
+{
+	char	**dup;
+	int		i;
+
+	i = -1;
+	dup = (char **)malloc(sizeof(char *) * ft_tablen(env) + 1);
+	while (++i < (int)ft_tablen(env))
+		dup[i] = ft_strdup(env[i]);
+	dup[++i] = NULL;
+	return (dup);
+}
 
 void	get_env(t_env **dupenv, char **env)
 {
@@ -21,43 +34,36 @@ void	get_env(t_env **dupenv, char **env)
 		list_elem(dupenv, env[i++]);
 }
 
-void	change_setenv(t_env **env, char *var, char *varname)
+void	set_env(t_env **env, char *var)
 {
-	if (check_env(*env, varname) < 0 && good_format(var) == 1)
+	if (check_env(*env, dup_var_name(var)) < 0 && good_format(var) == 1)
 		lst_add_elem_back(env, lst_create_elem(var));
-	else if (good_format(var) == 1)
-		change_var(env, var, varname);
+	else if (check_env(*env, dup_var_name(var)) == 1 && good_format(var) == 1)
+		update_env(env, var, dup_var_name(var));
+	ft_strdel(&var);
 }
 
-void	change_unsetenv(t_env **env, char *var, char *varname)
+void	unset_env(t_env **env, char *varname)
 {
-	if (check_env(*env, varname) == 1 && good_format(var) == 1)
-		lst_del_elem(env, varname, ft_strlen(varname));
+	if (check_env(*env, varname) == 1)
+		lst_del_elem(env, varname);
+	else
+		printf("variable '%s' not found\n", varname);
+	ft_strdel(&varname);
 }
 
-void	change_var(t_env **env, char *var, char *varname)
+void	update_env(t_env **env, char *var, char *name)
 {
 	t_env 	*tmp;
 	int		i;
 
 	tmp = *env;
-	i = ft_strlen(varname);
+	i = ft_strlen(name);
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->line, varname, i) == 0)
-			tmp->line = ft_strdup(var);
+		if (ft_strncmp(tmp->varname, name, i) == 0)
+			tmp->var = ft_strdup(var);
 		tmp = tmp->next;
 	}
-}
-
-void	test_lst(t_env *lst)
-{
-	t_env *tmp;
-
-	tmp = lst;
-	while (tmp)
-	{
-		printf("%s\n", tmp->line);
-		tmp = tmp->next;
-	}
+	ft_strdel(&name);
 }
