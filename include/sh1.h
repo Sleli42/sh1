@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 16:23:20 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/02 23:38:50 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/04 18:33:51 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ void		goto_directory(char *cmd);
 int			check_env(t_env *env, char *name);
 char		*dup_var_name(char *cmd);
 char		*var_name(char *cmd);
-char		*cut_cmd(char *cmd);
 int			good_format(char *s);
-
+/*
+***	utils.c
+*/
+char		*cut_cmd(char *cmd);
 #endif

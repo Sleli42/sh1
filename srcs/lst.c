@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:22:25 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/02 19:11:58 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/04 18:33:46 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,23 @@ void	lst_del_elem(t_env **alst, char *varname)
 	i = ft_strlen(varname);
 	while (tmp)
 	{
-		if (ft_strncmp(varname, tmp->varname, i) == 0)
+		if (ft_strcmp(varname, tmp->varname) == 0)
 		{
 			next = tmp->next;
+			if (next != NULL)
+			{
+				if (tmp->prev)
+					(tmp->prev)->next = next;
+				else
+					*alst = next;
+			}
+			else
+			{
+				(tmp->prev)->next = NULL;
+			}
 			ft_strdel(&tmp->var);
 			ft_strdel(&tmp->varname);
 			free(tmp);
-			if (next != NULL)
-				(tmp->prev)->next = next;
-			else
-				(tmp->prev)->next = NULL;
 			return ;
 		}
 		tmp = tmp->next;

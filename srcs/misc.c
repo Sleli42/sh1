@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:25:45 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/02 22:56:37 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/04 18:33:49 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,4 @@ char	*dup_var_name(char *cmd)
 		varname[j++] = cmd[i++];
 	varname[j] = '\0';
 	return (varname);
-}
-
-char	*cut_cmd(char *cmd)
-{
-	int		i;
-	int		j;
-	char	*var;
-
-	i = 0;
-	j = 0;
-	var = (char *)malloc(sizeof(char) * ft_strlen(cmd) - 6);
-	while (cmd[i] && cmd[i] != ' ')
-		i++;
-	i = i + 1;
-	while (cmd[i])
-		var[j++] = cmd[i++];
-	var[j] = '\0';
-	return (var);
 }

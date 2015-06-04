@@ -6,7 +6,7 @@
 #    By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/03 12:31:07 by lubaujar          #+#    #+#              #
-#    Updated: 2015/06/02 23:36:23 by lubaujar         ###   ########.fr        #
+#    Updated: 2015/06/04 18:33:52 by lubaujar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC = main.c\
 		env.c\
 		display.c\
 		misc.c\
-		exec.c
+		exec.c\
+		utils.c
 
 OBJ = $(SRC:.c=.o)
 	SRCDIR	= ./srcs/

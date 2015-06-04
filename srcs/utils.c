@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/12 14:42:32 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/04 18:33:44 by lubaujar         ###   ########.fr       */
+/*   Created: 2015/06/04 17:54:40 by lubaujar          #+#    #+#             */
+/*   Updated: 2015/06/04 18:33:47 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "sh1.h"
 
-int				count_words(char *s)
+char	*cut_cmd(char *cmd)
 {
+	int		i;
+	int		j;
+	char	*var;
 
-}
-
-char			**ft_strsplit(char const *s, char c)
-{
-
+	i = 0;
+	j = 0;
+	var = (char *)malloc(sizeof(char) * ft_strlen(cmd) - 6);
+	while (cmd[i] && cmd[i] != ' ')
+		i++;
+	i = i + 1;
+	while (cmd[i])
+		var[j++] = cmd[i++];
+	var[j] = '\0';
+	return (var);
 }
