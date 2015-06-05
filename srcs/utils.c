@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/04 17:54:40 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/04 18:33:47 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/05 16:58:55 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,26 @@ char	*cut_cmd(char *cmd)
 		var[j++] = cmd[i++];
 	var[j] = '\0';
 	return (var);
+}
+
+char	*create_path(char *path, char *cmd)
+{
+	char	*tmp;
+	char	*real_path;
+
+	tmp = NULL;
+	if (path)
+		tmp = ft_strjoin(path, "/");
+	real_path = ft_strjoin(tmp, cmd);
+	if (tmp)
+		ft_strdel(&tmp);
+	return (real_path);
+}
+
+int		good_access(char *bin)
+{
+	if (access(bin, F_OK) == 0)
+		if (access(bin, X_OK) == 0)
+			return (1);
+	return (0);
 }

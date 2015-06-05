@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:25:45 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/04 18:33:49 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/05 18:52:37 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,16 @@ void	goto_directory(char *cmd)
 		tmp[j++] = cmd[i++];
 	tmp[j] = '\0';
 	if (access(tmp, F_OK) == 0)
+	{
 		if (chdir(tmp) == -1)
-			printf("error access dir\n");
+		{
+			ft_putstr("sh: ");
+			ft_putstr(cmd);
+			ft_putstr(": Not a directory\n");
+			//sh: cd: auteur: Not a directory
+			//printf("error access dir\n");
+		}
+	}
 	ft_strdel(&tmp);
 }
 

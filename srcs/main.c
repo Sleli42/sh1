@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 16:19:31 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/04 18:33:48 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/05 18:44:20 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	while (1091111096051)
 	{
-		ft_putstr("PROMPT $> ");
+		ft_putstr("ZGUEGG[8=====D] $> ");
 		while (get_next_line(0, &buff) >= 0)
 		{
-			if (exec_syscall(all, buff) == 1)
-				break ;
-			if (builtins_cmd(all, buff) == 1)
+			if (builtins_cmd(all, buff) == 1
+				|| exec_syscall(all, buff) == 1)
 				break ;
 		}
+		ft_strdel(&buff);
 	}
 	return (0);
 }

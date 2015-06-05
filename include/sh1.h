@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 16:23:20 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/04 18:33:51 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/05 18:38:59 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct		s_all
 ***	exec.c
 */
 int			exec_syscall(t_all *all, char *cmd);
-int			search_path_bin(char *cmd, char *s);
+int			search_path_bin(t_all *all, char *cmd, char *s);
+void		exec_bin(t_all *all, char *syscall, char **cmd_array);
 /*
 ***	builtins_cmd.c
 */
@@ -77,4 +78,6 @@ int			good_format(char *s);
 ***	utils.c
 */
 char		*cut_cmd(char *cmd);
+char		*create_path(char *path, char *cmd);
+int			good_access(char *bin);
 #endif
