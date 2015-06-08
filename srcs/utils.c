@@ -6,7 +6,11 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/04 17:54:40 by lubaujar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2015/06/08 20:26:31 by lubaujar         ###   ########.fr       */
+=======
+/*   Updated: 2015/06/05 16:58:55 by lubaujar         ###   ########.fr       */
+>>>>>>> 2484e274e8c26849b7b1305f04115bea51ba0553
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +55,7 @@ int		good_access(char *bin)
 			return (1);
 	return (0);
 }
+<<<<<<< HEAD
 
 int		no_builtins(char *cmd)
 {
@@ -85,3 +90,5 @@ void	create_min_env(t_env **dupenv)
 	list_elem(dupenv, data);
 	ft_strdel(&data);
 }
+=======
+>>>>>>> 2484e274e8c26849b7b1305f04115bea51ba0553

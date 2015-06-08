@@ -6,7 +6,11 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 16:19:31 by lubaujar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2015/06/08 23:20:46 by lubaujar         ###   ########.fr       */
+=======
+/*   Updated: 2015/06/05 18:44:20 by lubaujar         ###   ########.fr       */
+>>>>>>> 2484e274e8c26849b7b1305f04115bea51ba0553
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +54,7 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	while (1091111096051)
 	{
+<<<<<<< HEAD
 		ft_putstr("\e[35m[PROMPT\e[37mDE\033[0m\e[35mOUF]\033[0m $> ");
 		while (get_next_line(0, &buff) > 0)
 		{
@@ -62,7 +67,16 @@ int		main(int ac, char **av, char **env)
 				&& no_builtins(buff) == 1)
 				printf("sh: %s: command not found\n", buff);
 			break ;
+=======
+		ft_putstr("ZGUEGG[8=====D] $> ");
+		while (get_next_line(0, &buff) >= 0)
+		{
+			if (builtins_cmd(all, buff) == 1
+				|| exec_syscall(all, buff) == 1)
+				break ;
+>>>>>>> 2484e274e8c26849b7b1305f04115bea51ba0553
 		}
+		ft_strdel(&buff);
 	}
 	ft_strdel(&buff);
 	return (0);
