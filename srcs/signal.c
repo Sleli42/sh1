@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/26 18:47:11 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/08 20:05:15 by lubaujar         ###   ########.fr       */
+/*   Created: 2015/06/08 21:47:47 by lubaujar          #+#    #+#             */
+/*   Updated: 2015/06/08 21:49:02 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh1.h"
 
-void	display_env(t_env *env)
+void	ft_func(int sig)
 {
-	t_env	*tmp;
-
-	tmp = env;
-	if (tmp)
-	{
-		while (tmp)
-		{
-			ft_putstr(tmp->var);
-			write(1, "\n", 1);
-			tmp = tmp->next;
-		}
-	}
-	else
-		return ;
+	(void)sig;
 }
 
-void	get_and_display_pwd(void)
+void	ft_catch_sig(void)
 {
-	char	*pwd;
-	char	*buff;
+	int sig;
 
-	buff = NULL;
-	pwd = getcwd(buff, 42);
-	ft_putstr(pwd);
-	write(1, "\n", 1);
+	sig = 1;
+	while (sig <= 31)
+	{
+		signal(sig++, ft_func);
+	}
 }

@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   del_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/26 18:47:11 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/08 20:05:15 by lubaujar         ###   ########.fr       */
+/*   Created: 2015/06/05 16:27:54 by lubaujar          #+#    #+#             */
+/*   Updated: 2015/06/05 16:46:20 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh1.h"
+#include "libft.h"
 
-void	display_env(t_env *env)
+void	del_array(char ***array)
 {
-	t_env	*tmp;
+	int		i;
+	char	**tmp;
 
-	tmp = env;
+	tmp = *array;
+	i = 0;
 	if (tmp)
 	{
-		while (tmp)
+		while (tmp && tmp[i])
 		{
-			ft_putstr(tmp->var);
-			write(1, "\n", 1);
-			tmp = tmp->next;
+			ft_strdel(&tmp[i]);
+			i++;
 		}
+		free(tmp);
+		tmp = NULL;
 	}
-	else
-		return ;
-}
-
-void	get_and_display_pwd(void)
-{
-	char	*pwd;
-	char	*buff;
-
-	buff = NULL;
-	pwd = getcwd(buff, 42);
-	ft_putstr(pwd);
-	write(1, "\n", 1);
 }

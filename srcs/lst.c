@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:22:25 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/04 18:33:46 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/08 20:29:15 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_env		*lst_create_elem(char *s)
 	{
 		new->var = ft_strdup(s);
 		new->varname = dup_var_name(s);
+		new->SHLVL = 1;
 		if (new->var == NULL)
 			return (NULL);
 	}
@@ -71,6 +72,8 @@ void	lst_del_elem(t_env **alst, char *varname)
 	tmp = *alst;
 	next = NULL;
 	i = ft_strlen(varname);
+	if (ft_strcmp(varname, "_") == 0)
+		return ;
 	while (tmp)
 	{
 		if (ft_strcmp(varname, tmp->varname) == 0)
@@ -84,9 +87,7 @@ void	lst_del_elem(t_env **alst, char *varname)
 					*alst = next;
 			}
 			else
-			{
 				(tmp->prev)->next = NULL;
-			}
 			ft_strdel(&tmp->var);
 			ft_strdel(&tmp->varname);
 			free(tmp);
@@ -94,4 +95,22 @@ void	lst_del_elem(t_env **alst, char *varname)
 		}
 		tmp = tmp->next;
 	}
+}
+
+int		list_len(t_env *lst)
+{
+	int		ret;
+	t_env	*tmp;
+
+	ret = 0;
+	tmp = lst;
+	if (tmp)
+	{
+		while (tmp)
+		{
+			ret++;
+			tmp = tmp->next;
+		}
+	}
+	return (ret);
 }

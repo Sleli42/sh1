@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:22:30 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/04 18:33:49 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/08 19:56:46 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	unset_env(t_env **env, char *varname)
 {
 	if (check_env(*env, varname) == 1)
 		lst_del_elem(env, varname);
-	else
-		printf("variable '%s' not found\n", varname);
 	ft_strdel(&varname);
 }
 
