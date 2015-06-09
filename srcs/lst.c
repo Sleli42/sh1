@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:22:25 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/08 20:29:15 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/09 18:55:42 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,25 @@ void	lst_del_elem(t_env **alst, char *varname)
 	}
 }
 
-int		list_len(t_env *lst)
+void		del_lst(t_env *alst)
 {
-	int		ret;
+	t_env	*next_list;
 	t_env	*tmp;
 
-	ret = 0;
-	tmp = lst;
+	tmp = alst;
+	next_list = NULL;
 	if (tmp)
 	{
 		while (tmp)
 		{
-			ret++;
-			tmp = tmp->next;
+			next_list = tmp->next;
+			if (tmp->var)
+				free(tmp->var);
+			if (tmp->varname)
+				free(tmp->varname);
+			if (tmp)
+				free(tmp);
+			tmp = next_list;
 		}
 	}
-	return (ret);
 }

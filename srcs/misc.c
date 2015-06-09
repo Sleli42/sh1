@@ -6,11 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:25:45 by lubaujar          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2015/06/08 19:39:34 by lubaujar         ###   ########.fr       */
-=======
-/*   Updated: 2015/06/05 18:52:37 by lubaujar         ###   ########.fr       */
->>>>>>> 2484e274e8c26849b7b1305f04115bea51ba0553
+/*   Updated: 2015/06/09 22:59:54 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +54,15 @@ void	goto_directory(char *cmd)
 	while (cmd[i])
 		tmp[j++] = cmd[i++];
 	tmp[j] = '\0';
+	if (tmp[0] == '\0')
+	{
+		ft_strdel(&tmp);
+		tmp = ft_strdup("/Volumes/Data/nfs/zfs-student-5/users/2014/lubaujar/");
+	}
 	if (access(tmp, F_OK) == 0)
 	{
 		if (chdir(tmp) == -1)
-		{
-			ft_putstr("sh: ");
-			ft_putstr(cmd);
-			ft_putstr(": Not a directory\n");
-			//sh: cd: auteur: Not a directory
-			//printf("error access dir\n");
-		}
+			put_error(4, cmd + 3);
 	}
 	ft_strdel(&tmp);
 }

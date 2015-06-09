@@ -6,11 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 16:23:20 by lubaujar          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2015/06/08 23:10:32 by lubaujar         ###   ########.fr       */
-=======
-/*   Updated: 2015/06/05 18:38:59 by lubaujar         ###   ########.fr       */
->>>>>>> 2484e274e8c26849b7b1305f04115bea51ba0553
+/*   Updated: 2015/06/09 22:57:16 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +16,8 @@
 # include "libft.h"
 #include <stdio.h>
 # include <dirent.h>
+# include <signal.h>
+# include <sys/types.h>
 # include "colors.h"
 
 typedef struct		s_env
@@ -37,22 +35,17 @@ typedef struct		s_all
 	t_env			*data;
 }					t_all;
 
-void	ft_catch_sig(void);
+int			skip_spaces(char *s);
 
 /*
 ***	exec.c
 */
-<<<<<<< HEAD
 int			exec_syscall(t_all *all, char *cmd, char *s);
-=======
-int			exec_syscall(t_all *all, char *cmd);
-int			search_path_bin(t_all *all, char *cmd, char *s);
->>>>>>> 2484e274e8c26849b7b1305f04115bea51ba0553
 void		exec_bin(t_all *all, char *syscall, char **cmd_array);
 /*
 ***	builtins_cmd.c
 */
-void			builtins_cmd(t_all *all, char *cmd);
+void		builtins_cmd(t_all *all, char *cmd);
 /*
 ***	env.c
 */
@@ -68,7 +61,7 @@ void		list_elem(t_env **list, char *line);
 t_env		*lst_create_elem(char *line);
 void		lst_add_elem_back(t_env **alst, t_env *new_elem);
 void		lst_del_elem(t_env **alst, char *varname);
-int			list_len(t_env *lst);
+void		del_lst(t_env *alst);
 /*
 ***	display.c
 */
@@ -88,14 +81,21 @@ int			good_format(char *s);
 char		*cut_cmd(char *cmd);
 char		*create_path(char *path, char *cmd);
 int			good_access(char *bin);
-<<<<<<< HEAD
 int			no_builtins(char *cmd);
 void		create_min_env(t_env **dupenv);
 /*
-***	builtins_cmd.c
+***	signal.c
 */
 void		ft_catch_sig(void);
 void		ft_func(int sig);
-=======
->>>>>>> 2484e274e8c26849b7b1305f04115bea51ba0553
+/*
+***	init.c
+*/
+char		*replace_syscall_path(char *s);
+t_all		*init_all(char **env);
+/*
+***	error.c
+*/
+void		put_error(int err, char *s);
+
 #endif

@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/02 16:00:27 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/09 22:46:59 by lubaujar         ###   ########.fr       */
+/*   Created: 2015/06/09 22:51:03 by lubaujar          #+#    #+#             */
+/*   Updated: 2015/06/09 23:01:09 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh1.h"
 
-t_all	*init_all(char **env)
+void	put_error(int err, char *s)
 {
-	t_all	*all;
-
-	all = (t_all *)malloc(sizeof(t_all));
-	all->data = NULL;
-	if (!env || !*env)
+	if (err == 1)	/* not directory */
 	{
-		all->dup_env = NULL;
-		create_min_env(&all->data);
+		ft_putstr("sh: ");
+		ft_putstr(s);
+		ft_putstr(": Not a directory\n");
 	}
-	else
+	if (err == 2)
 	{
-		all->dup_env = ft_dupenv(env);
-		get_env(&all->data, env);
+		ft_putstr("sh: ");
+		ft_putstr(s);
+		ft_putstr(": command not found\n");
 	}
-	return (all);
+	if (err == 3)
+	{
+		ft_putstr("sh: ");
+		ft_putstr(s);
+		ft_putstr(": No such file or directory\n");
+	}
+	if (err == 4)
+	{
+		ft_putstr("sh: cd: ");
+		ft_putstr(s);
+		ft_putstr(": Not a directory\n");
+	}
 }

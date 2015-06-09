@@ -6,7 +6,7 @@
 #    By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/03 12:31:07 by lubaujar          #+#    #+#              #
-#    Updated: 2015/06/08 21:49:07 by lubaujar         ###   ########.fr        #
+#    Updated: 2015/06/09 22:54:39 by lubaujar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRC = main.c\
 		misc.c\
 		exec.c\
 		utils.c\
+		init.c\
+		error.c\
 		signal.c
 
 OBJ = $(SRC:.c=.o)
