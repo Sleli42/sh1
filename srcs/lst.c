@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:22:25 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/09 18:55:42 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/10 14:58:50 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_env		*lst_create_elem(char *s)
 	{
 		new->var = ft_strdup(s);
 		new->varname = dup_var_name(s);
-		new->SHLVL = 1;
+		new->shlvl = 1;
 		if (new->var == NULL)
 			return (NULL);
 	}
@@ -43,7 +43,7 @@ t_env		*lst_create_elem(char *s)
 
 void		lst_add_elem_back(t_env **alst, t_env *new_elem)
 {
-	t_env 	*curr;
+	t_env	*curr;
 
 	curr = *alst;
 	if (new_elem != NULL)
@@ -63,31 +63,18 @@ void		lst_add_elem_back(t_env **alst, t_env *new_elem)
 		return ;
 }
 
-void	lst_del_elem(t_env **alst, char *varname)
+void		lst_del_elem(t_env **alst, char *varname)
 {
 	t_env	*next;
-	t_env 	*tmp;
-	int		i;
+	t_env	*tmp;
 
 	tmp = *alst;
 	next = NULL;
-	i = ft_strlen(varname);
-	if (ft_strcmp(varname, "_") == 0)
-		return ;
 	while (tmp)
 	{
 		if (ft_strcmp(varname, tmp->varname) == 0)
 		{
-			next = tmp->next;
-			if (next != NULL)
-			{
-				if (tmp->prev)
-					(tmp->prev)->next = next;
-				else
-					*alst = next;
-			}
-			else
-				(tmp->prev)->next = NULL;
+			swap_ptr(alst, tmp);
 			ft_strdel(&tmp->var);
 			ft_strdel(&tmp->varname);
 			free(tmp);

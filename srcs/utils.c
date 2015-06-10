@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/04 17:54:40 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/09 17:55:42 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/10 13:43:23 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,16 @@ void	create_min_env(t_env **dupenv)
 
 	data = NULL;
 	tmp = NULL;
-	tmp = ft_strdup("PATH=~/.brew/bin/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/nfs/zfs-student-5/users/2014/lubaujar/.brew/bin");
+	tmp = ft_strdup("PATH=~/.brew/bin/usr/local/bin:/usr/bin:/bin:/\
+usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/\
+nfs/zfs-student-5/users/2014/lubaujar/.brew/bin");
 	list_elem(dupenv, tmp);
 	ft_strdel(&tmp);
 	data = getcwd(tmp, 42);
 	tmp = ft_strjoin("PWD=", data);
 	list_elem(dupenv, tmp);
 	ft_strdel(&tmp);
-	data = ft_strjoin("SHLVL=", ft_itoa((*dupenv)->SHLVL));
+	data = ft_strjoin("SHLVL=", ft_itoa((*dupenv)->shlvl));
 	list_elem(dupenv, data);
 	ft_strdel(&data);
 	data = ft_strdup("_=/usr/bin/env");

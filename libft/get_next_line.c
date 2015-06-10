@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/05 05:37:53 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/05/22 18:35:47 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/10 13:42:27 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ static int		gnl_check_read(char *buffer, char **stock, char **line)
 	return (0);
 }
 
-int
-				get_next_line(int const fd, char **line)
+int				get_next_line(int const fd, char **line)
 {
 	static char		*stock = NULL;
 	char			*buffer;

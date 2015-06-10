@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 18:22:30 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/08 19:56:46 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/10 14:44:22 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	set_env(t_env **env, char *var)
 
 void	unset_env(t_env **env, char *varname)
 {
-	if (check_env(*env, varname) == 1)
+	if (check_env(*env, varname) == 1 && ft_strcmp(varname, "_") != 0)
 		lst_del_elem(env, varname);
 	ft_strdel(&varname);
 }
 
 void	update_env(t_env **env, char *var, char *name)
 {
-	t_env 	*tmp;
+	t_env	*tmp;
 	int		i;
 
 	tmp = *env;

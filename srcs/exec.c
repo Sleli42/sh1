@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/02 23:23:55 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/09 22:56:52 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/10 14:44:21 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,31 @@ static char	*check_command(char *cmd)
 	s = (char *)malloc(sizeof(char) * 21);
 	while (cmd[i])
 	{
-		if (cmd[i] == ' ' || cmd[i] == '\t')
-			break ;
-		s[j++] = cmd[i++];
-	}
-	if ((cmd[i] == ' ' && cmd[i + 1] == '\t')
-		|| (cmd[i] == ' ' && cmd[i + 1] == ' ')
-		|| (cmd[i] == '\t' && cmd[i + 1] == '\t')
-		|| (cmd[i] == '\t' && cmd[i + 1] == ' '))
-	{
-		while ((cmd[i] && cmd[i + 1] == ' ')
-			|| cmd[i + 1] == '\t')
+		if (ft_isspace(cmd[i]))
 			i++;
-		if (cmd[i] == '\t')
-			s[j++] = ' ', i = i + 1;
+		if (!ft_isspace(cmd[i]) && ft_isspace(cmd[i - 1]))
+			s[j++] = ' ';
+		if (!ft_isspace(cmd[i]))
+			s[j++] = cmd[i];
+		i++;
 	}
-	while (cmd[i])
-		s[j++] = cmd[i++];
 	s[j] = '\0';
 	return (s);
 }
 
-int		exec_syscall(t_all *all, char *cmd, char *s)
+int			exec_syscall(t_all *all, char *cmd, char *s)
 {
 	char	**array;
 	char	**cmd_parse;
+	char	*tmp;
 
-	cmd = check_command(cmd);
-	if (!s)
+	tmp = check_command(cmd);
+	if (!s && cmd[0])
 		return (error_1(cmd));
 	array = ft_strsplit(s, ':');
-	cmd_parse = ft_strsplit(cmd, ' ');
-	if (cmd_parse[0][0] == '/')
+	cmd_parse = ft_strsplit(tmp, ' ');
+	ft_strdel(&tmp);
+	if (cmd_parse[0][0] == '/' || ft_strcmp(cmd_parse[0], "./") == 0)
 	{
 		if (cmd_parse[0][ft_strlen(cmd_parse[0]) - 1] == '/')
 		{
@@ -103,7 +96,7 @@ int		exec_syscall(t_all *all, char *cmd, char *s)
 	return (0);
 }
 
-void	exec_bin(t_all *all, char *syscall, char **cmd_array)
+void		exec_bin(t_all *all, char *syscall, char **cmd_array)
 {
 	pid_t	pid;
 	int		buff;

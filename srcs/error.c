@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 22:51:03 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/09 23:01:09 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/09 23:04:49 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	put_error(int err, char *s)
 {
-	if (err == 1)	/* not directory */
+	if (err == 1)
 	{
 		ft_putstr("sh: ");
 		ft_putstr(s);
