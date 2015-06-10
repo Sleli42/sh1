@@ -6,7 +6,7 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 16:23:20 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/10 14:57:59 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/10 16:01:05 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include <dirent.h>
-#include <stdio.h>
 # include <signal.h>
 # include <sys/types.h>
 # include "colors.h"

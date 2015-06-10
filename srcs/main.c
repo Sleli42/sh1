@@ -6,13 +6,13 @@
 /*   By: lubaujar <lubaujar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 16:19:31 by lubaujar          #+#    #+#             */
-/*   Updated: 2015/06/10 14:58:42 by lubaujar         ###   ########.fr       */
+/*   Updated: 2015/06/10 16:01:33 by lubaujar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sh1.h>
 
-void	swap_ptr(t_env **alst, t_env *tmp)
+void		swap_ptr(t_env **alst, t_env *tmp)
 {
 	t_env	*next;
 
@@ -82,8 +82,7 @@ int			main(int ac, char **av, char **env)
 			break ;
 		}
 	}
-	del_lst(all->data);
-	del_array(&all->dup_env);
+	del_lst(all->data), del_array(&all->dup_env);
 	free(all);
 	return (0);
 }
